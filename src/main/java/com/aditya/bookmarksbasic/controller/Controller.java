@@ -2,6 +2,7 @@ package com.aditya.bookmarksbasic.controller;
 
 import com.aditya.bookmarksbasic.model.bookmarks;
 import com.aditya.bookmarksbasic.service.BookmarkService;
+import com.aditya.bookmarksbasic.service.FolderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,13 +28,19 @@ public class Controller {
         return service.getBookmarks();
     }
 
-    @PutMapping("/update")
+    @GetMapping("/getBookmarksinFolder/{folderId}")
+    public List<bookmarks> getBookmarksbyFolder(@PathVariable int folderId){
+        return service.getBookmarksbyFolderId(folderId);
+    }
+
+    @PutMapping("/updateBookmark")
     public bookmarks updateBookmark(@RequestBody bookmarks bm){
         return service.update(bm);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deleteBookmark/{id}")
     public bookmarks deleteBookmarks(@PathVariable int id){
         return service.delete(id);
     }
+
 }

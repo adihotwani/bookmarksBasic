@@ -27,6 +27,10 @@ public class BookmarkService {
         return repo.findById(id).orElse(null);
     }
 
+    public List<bookmarks> getBookmarksbyFolderId(int folderId){
+        return repo.findByFolderId(folderId);
+    }
+
     // update
     public bookmarks update(bookmarks bm){
         bookmarks exists = repo.findById(bm.getId()).orElse(null);
